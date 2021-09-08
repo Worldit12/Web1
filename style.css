@@ -1,0 +1,59 @@
+.title{
+  color: black;
+  text-decoration: none;
+}
+.title:hover{
+  text-decoration: underline;
+}
+#active{
+  color: dodgerblue;
+}
+#btn{
+  width: 60px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  transition: all 0.3s;
+}
+#btn:hover{
+  background-color: gray;
+  border-color: #c0c0c0;
+  color: white;
+}
+body{
+  margin: 0px;
+}
+h1{
+  font-size: 40px;
+  text-align: center;
+  border-bottom: 2px solid gray;
+  margin: 0px;
+  padding: 20px;
+}
+ol{
+  margin: 0px;
+  padding: 20px;
+  font-size: 20px;
+}
+#grid{
+  display: grid;
+  grid-template-columns: 150px 1fr;
+}
+#grid ol{
+  border-right: 2px solid gray;
+  width: 100px;
+  padding-left: 35px;
+}
+#grid #article{
+  padding-left: 25px;
+}
+@media (max-width:800px) {
+  #grid{
+    display: block;
+  }
+  #grid ol{
+    border-bottom: 2px solid gray;
+    width: 100%;
+  }
+}

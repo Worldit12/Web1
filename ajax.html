@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WEB1 - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="colors.js"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+    var checkLoginStatus = function(response){
+        console.log(response);
+        // statusChangeCallback(response);        // Returns the login status.
+        if(response.status === 'connected'){
+            document.querySelector('#authBtn').value = 'LogOut';
+        } else {
+            document.querySelector('#authBtn').value = 'LogIn';
+        }
+    }
+    window.fbAsyncInit = function() {
+        FB.init({
+         appId      : '982878468945328',
+         cookie     : true,                     // Enable cookies to allow the server to access the session.
+         xfbml      : true,                     // Parse social plugins on this webpage.
+         version    : 'v11.0'           // Use this Graph API version for this call.
+        });
+
+
+
+        FB.getLoginStatus(checkLoginStatus);
+        };
+
+        function login_out(self){
+            if(self.value === 'LogIn'){
+                // now logout
+                FB.login(function(response){
+                  // handle the response
+                  console.log('login=>', response);
+                  checkLoginStatus(response);
+                });
+            } else {
+                FB.logout(function(response){
+                  // handle the response
+                  console.log('logout=>', response);
+                  checkLoginStatus(response);
+                });
+            }
+        }
+    </script>
+  </head>
+  <body>
+      <input type="button" id="authBtn" value="checking..." onclick="login_out(this)">
+    <h1><a href="#!welcome" title="Welcome" class="title" onclick="fetchpage('welcome')">WEB</a></h1>
+    <div id="grid">
+      <ol id="nav">
+
+      </ol>
+      <article id="article">
+
+      </article>
+      <script>
+        function fetchpage(file){
+          fetch(file).then(function(respone){
+              respone.text().then(function(text){
+                  document.querySelector('article').innerHTML = text;
+              })
+          })
+        }
+
+        if(location.hash){
+            fetchpage(location.hash.substr(2));
+        }else{
+            fetchpage('welcome');
+        }
+        fetch('list').then(function(respone){
+            respone.text().then(function(text){
+                document.querySelector('#nav').innerHTML = text;
+            })
+        })
+      </script>
+    </div>
+
+  </body>
+</html>

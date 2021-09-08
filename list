@@ -1,0 +1,4 @@
+<li><a class="title" href="#!html" onclick="fetchpage('html.txt')">HTML</a></li>
+<li><a class="title" href="#!css" onclick="fetchpage('css')">CSS</a></li>
+<li><a class="title" href="#!javascript" onclick="fetchpage('javascript')">JavaScript</a></li>
+<input id="btn" type="button" value="night" onclick="toggle(this)">
